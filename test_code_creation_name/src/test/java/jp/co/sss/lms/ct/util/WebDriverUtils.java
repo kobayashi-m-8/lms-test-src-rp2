@@ -115,4 +115,14 @@ public class WebDriverUtils {
 		}
 	}
 
+	
+	public static void getEvidence(String className, String methodName) {
+	    File tempFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+	    try {
+	        Files.move(tempFile, new File("evidence\\" + className + "_" + methodName + ".png"));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }
