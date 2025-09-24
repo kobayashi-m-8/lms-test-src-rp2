@@ -46,7 +46,7 @@ public class Case02 {
         String expectedTitle = "ログイン | LMS";
         assertEquals(expectedTitle, actualTitle, "ログイン画面が表示されること");
 
-        getEvidence("Case01", "test01");
+        getEvidence("Case02", "test01");
     }
 
 	@Test
@@ -54,9 +54,14 @@ public class Case02 {
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
 		// TODO ここに追加
-		webDriver.findElement(By.id("loginId")).sendKeys("aaa");
-		webDriver.findElement(By.id("password")).sendKeys("aaa");
+		WebElement loginId = webDriver.findElement(By.id("loginId"));
+        loginId.clear();
+        loginId.sendKeys("UnknownUser01");
 
+        WebElement password = webDriver.findElement(By.id("password"));
+        password.clear();
+        password.sendKeys("test1234");
+        
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
 
 		WebElement errorMsg = webDriver.findElement(By.cssSelector("span.help-inline.error"));
