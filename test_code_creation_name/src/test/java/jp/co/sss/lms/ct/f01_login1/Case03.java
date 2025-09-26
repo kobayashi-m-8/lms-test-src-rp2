@@ -1,6 +1,7 @@
 package jp.co.sss.lms.ct.f01_login1;
 
 import static jp.co.sss.lms.ct.util.WebDriverUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  * 結合テスト ログイン機能①
@@ -36,6 +39,13 @@ public class Case03 {
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
 		// TODO ここに追加
+		webDriver.get("http://localhost:8080/lms");
+
+		String actualTitle = webDriver.getTitle();
+		String expectedTitle = "ログイン | LMS";
+		assertEquals(expectedTitle, actualTitle, "ログイン画面が表示されること");
+
+		getEvidence("Case03", "test01");
 	}
 
 	@Test
@@ -43,6 +53,20 @@ public class Case03 {
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
 		// TODO ここに追加
+		WebElement loginId = webDriver.findElement(By.id("loginId"));
+		loginId.clear();
+		loginId.sendKeys("StudentAA01");
+
+		WebElement password = webDriver.findElement(By.id("password"));
+		password.sendKeys("StudentAA011");
+
+		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
+
+		String actualTitle = webDriver.getTitle();
+		String expectedTitle = "コース詳細 | LMS";
+		assertEquals(expectedTitle, actualTitle, "コース詳細画面に遷移すること");
+
+		getEvidence("Case03", "test02");
 	}
 
 }
