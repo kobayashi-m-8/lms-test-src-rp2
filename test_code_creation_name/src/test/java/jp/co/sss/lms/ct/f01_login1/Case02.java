@@ -38,8 +38,6 @@ public class Case02 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
-		 // トップページにアクセス
 		webDriver.get("http://localhost:8080/lms");
 
         String actualTitle = webDriver.getTitle();
@@ -53,7 +51,6 @@ public class Case02 {
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
 		WebElement loginId = webDriver.findElement(By.id("loginId"));
         loginId.clear();
         loginId.sendKeys("UnknownUser01");

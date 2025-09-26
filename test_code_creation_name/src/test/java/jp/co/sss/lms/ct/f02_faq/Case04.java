@@ -44,7 +44,6 @@ public class Case04 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
-		// TODO ここに追加
 		webDriver.get("http://localhost:8080/lms");
 
 		String actualTitle = webDriver.getTitle();
@@ -58,12 +57,12 @@ public class Case04 {
 	@Order(2)
 	@DisplayName("テスト02 初回ログイン済みの受講生ユーザーでログイン")
 	void test02() {
-		// TODO ここに追加
 		WebElement loginId = webDriver.findElement(By.id("loginId"));
 		loginId.clear();
 		loginId.sendKeys("StudentAA01");
 
 		WebElement password = webDriver.findElement(By.id("password"));
+		password.clear();
 		password.sendKeys("StudentAA011");
 
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
